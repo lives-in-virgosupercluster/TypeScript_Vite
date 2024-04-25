@@ -1,0 +1,4 @@
+-vite is faster and flexible than CRA
+-faster because it uses ESBuild while CRA uses webpack
+-ESBuild is written using Go while webpack is written using js
+-Go is faster than js as Go is multithreaded unlike js
