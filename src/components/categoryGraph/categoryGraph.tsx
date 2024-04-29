@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./categorygraph.module.css";
-
-export const CategoryGraph = ({ range, categoryName, category }) => {
+interface categorygraph{
+  range:string,
+  categoryName:string,
+  category:string,
+}
+export const CategoryGraph :React.FC<categorygraph>=({ range, categoryName, category }) => {
   const dynamicClass = styles[categoryName];
   return (
     <div className={styles.container}>
