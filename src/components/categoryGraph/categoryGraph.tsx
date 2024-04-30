@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./categorygraph.module.css";
+import styles from "../categoryGraph/categoryGraph.module.css";
 interface categorygraph{
   range:string,
   categoryName:string,

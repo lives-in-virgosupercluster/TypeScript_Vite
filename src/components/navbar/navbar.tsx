@@ -1,6 +1,6 @@
-import React from "react";
+
 import styles from "./navbar.module.css";
-import Image from "next/image";
+
 
 export const Navbar = () => {
   return (
@@ -12,13 +12,13 @@ export const Navbar = () => {
         </p>
       </div>
       <div className={styles.logo}>
-        <Image
+        <img
           src="/Calculator.png"
           alt="pic"
           width={50}
           height={50}
           className={styles.image}
-        ></Image>
+        ></img>
       </div>
     </div>
   );

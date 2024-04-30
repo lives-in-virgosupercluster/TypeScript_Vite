@@ -9,8 +9,20 @@ interface formValues{
   agecategory:string,
   unit:string,
   gender:string,
-  weightUnit:string
+  weightUnit:string,
+  year:number,
+  month:number,
+  heightfeet:number,
+  heightinch:number,
+  heightcm:number,
+  weight:number,
 }
+// interface WeightChartProps {
+//   bmiValue: number;
+//   lower: number | null;
+//   upper: number | null;
+//   category: string | null;
+// }
 
 export const Calculator:React.FC= () => {
   const {
@@ -31,10 +43,11 @@ export const Calculator:React.FC= () => {
   const watchUnit = watch("unit");
   const [bmivalue, setBmiValue] = useState<number | null>();
   // const [finalweight, setfinalWeight] = useState<number | undefined>();
-  const [finalheight, setfinalHeight] = useState<number | null>();
-  const [lowerweight, setlowerWeight] = useState<number | null>();
-  const [upperWeight, setUpperWeight] = useState<number | null>();
-  const [category, setcategory] = useState();
+  // const [finalheight, setfinalHeight] = useState<number | null>();
+  const [lowerweight, setlowerWeight] = useState<number>(0);
+  const [upperWeight, setUpperWeight] = useState<number>(0);
+
+  const [category, setcategory] = useState<string>("");
   const options = [
     { label: "Adult (20+)", value: "adult" },
     { label: "Child (5-19)", value: "child" },
@@ -46,60 +59,37 @@ export const Calculator:React.FC= () => {
 
   //   // Add more styles as needed
   // };
-  const onSubmit = async (data) => {
-    // const queryParams = new URLSearchParams({
-    //   weight: data.weight,
-    //   heightfeet: data.heightfeet,
-    //   heightinch: data.heightinch,
-    //   heightcm: data.heightcm,
-    //   unit: data.unit,
-
-    //   weightUnit: data.weightUnit,
-    // });
-
-    // const response = await fetch(`/api/calculate-bmi?${queryParams}`, {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-
-    // if (response.ok) {
-    //   const data = await response.json();
-    //   console.log(data);
-    //   setBmiValue(data.bmi);
-
-    //   setfinalHeight(data.height);
-
-    //   setfinalWeight(data.weight);
-    //   setlowerWeight(data.lower);
-    //   setUpperWeight(data.upper);
-    //   setcategory(data.category);
-    // }
-    let finweight = 0;
-    let finheight = 0;
-    const weightUnit=data.weightUnit;
-    const weight=data.weigth;
-    if (weightUnit === 'pounds') {
-      finweight = 0.453592 * parseFloat(weight);
-    } else if (weightUnit === 'kilograms') {
-      finweight = parseFloat(weight);
-    }
-
+  const onSubmit = async (data: {
+    weight: number;
+    heightfeet?: number;
+    heightinch?: number;
+    heightcm?: number;
+    unit: string;
+    weightUnit: string;
+  }) => {
+    let finweight: number = 0;
+    let finheight: number = 0;
+    const { weightUnit, weight, heightcm, heightfeet, heightinch, unit } = data;
   
-
-    if (unit === 'feet') {
-      finheight = heightfeet * 0.3048;
-      finheight += heightinch * 0.0254;
-    } else if (unit === 'cm') {
-      finheight =heightcm * 0.01;
+    if (weightUnit === 'pounds') {
+      finweight = 0.453592 * parseFloat(weight.toString());
+    } else if (weightUnit === 'kilograms') {
+      finweight = parseFloat(weight.toString());
     }
-
-    let bmivalue = finweight / (finheight * finheight);
-    let category;
-    let upper;
-    let lower;
-
+  
+    if (unit === 'feet') {
+      finheight = (heightfeet || 0) * 0.3048;
+      finheight += (heightinch || 0) * 0.0254;
+    } else if (unit === 'cm') {
+      finheight = (heightcm || 0) * 0.01;
+    }
+  
+    let bmivalue: number = finweight / (finheight * finheight);
+    
+    let category: string = "";
+    let upper: number = 0;
+    let lower: number = 0;
+  
     if (bmivalue < 18.5) {
       category = "UnderWeight";
     } else if (bmivalue >= 18.5 && bmivalue <= 24.9) {
@@ -109,15 +99,19 @@ export const Calculator:React.FC= () => {
     } else if (bmivalue > 29.9) {
       category = "Obese";
     }
-
+  
     lower = 18.5 * (finheight) * (finheight);
     upper = 24.9 * (finheight) * (finheight);
-    lower = lower.toFixed(0);
-    upper = upper.toFixed(0);
-
-   
+    lower = parseFloat(lower.toFixed(0));
+    upper = parseFloat(upper.toFixed(0));
+    bmivalue=parseFloat(bmivalue.toFixed(0));
+  
+    setcategory(category);
+    setlowerWeight(lower);
+    setUpperWeight(upper);
+    setBmiValue(bmivalue);
   };
-
+  
   return (
     <div className={styles.chartcalc}>
       <div className ={styles.calctemp}>
@@ -343,7 +337,7 @@ export const Calculator:React.FC= () => {
         {bmivalue ? (
           <WeightChart
             bmiValue={bmivalue}
-            height={finalheight}
+            // height={finalheight}
             lower={lowerweight}
             upper={upperWeight}
             category={category}

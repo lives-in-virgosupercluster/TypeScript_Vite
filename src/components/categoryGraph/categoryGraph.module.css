@@ -1,0 +1,65 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    padding:0.1rem;
+  
+}
+.Healthy{
+    background-color: #60D1AA;
+   
+    height: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.Obese{
+    background-color: #FF5C5C;
+    height: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.UnderWeight{
+    background-color: #008255;
+    height: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.OverWeight{
+    background-color: #F59D00;
+    height: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.text{
+    color: #657E79;
+    font-size:2rem;
+  }
+  .heading{
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size:1rem;
+     
+  }
+  .range{
+      font-family: "Poppins", sans-serif;
+      font-weight: 350;
+      font-style: normal;
+      font-size:0.8rem;
+  
+  }
+  .cursor{
+    height: 1rem;
+    width: 1rem;
+    border-radius: 2rem;
+    border:2px solid white;
+    background-color: #008255;
+  
+}

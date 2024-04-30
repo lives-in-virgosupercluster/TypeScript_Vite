@@ -1,0 +1,91 @@
+
+.image{
+    width: 5rem;
+    height: 5rem;
+}
+.container{
+    display: flex;
+    
+    height:8rem;
+    align-items: center;
+    background-color: #657E79;
+   
+    color:white;
+    position: relative;
+  
+}
+.para{
+    font-family: "Poppins", sans-serif;
+}
+.title{
+  /* font-family: 'sans-serif'; */
+  font-family: 'Poppins';
+  
+}
+.logo{
+  position: absolute;
+  left:90%;
+
+}
+.desc{
+  padding-left:2rem;
+}
+.desc p{
+    font-weight: 300;
+}
+@media (max-width: 1024px) {
+  /* Your styles for screens with width less than 1024 pixels go here */
+.desc{
+  padding-left:2rem;
+}
+}
+@media (max-width: 860px) {
+  /* Your styles for screens with width less than 1024 pixels go here */
+.desc{
+  padding-left:1rem;
+}
+}
+@media (max-width: 767px) {
+    /* Your styles for screens with width less than 1024 pixels go here */
+  .image{
+    display: none;
+  }
+  .title{
+    font-size: 2rem;;
+  }
+  .container{
+   width:100vw;
+  }
+  }
+  @media (max-width: 500px) {
+    /* Your styles for screens with width less than 1024 pixels go here */
+  .image{
+    display: none;
+  }
+  .title{
+    font-size: 2rem;
+  }
+  .container{
+   width: 100vw;
+    justify-content: center;
+    word-wrap: break-word;
+    padding-left:10px;
+  }
+  }
+
+@media (max-width: 200px) {
+    /* Your styles for screens with width less than 1024 pixels go here */
+  .image{
+    display: none;
+  }
+  .title{
+    font-size: 4rem;
+  }
+  .container{
+    width: 27rem;
+  }
+  }
+
+  
+
+  
